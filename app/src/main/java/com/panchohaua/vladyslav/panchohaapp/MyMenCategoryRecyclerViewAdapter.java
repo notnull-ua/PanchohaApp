@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.panchohaua.vladyslav.panchohaapp.MenCategoryFragment.OnListFragmentInteractionListener;
 import com.panchohaua.vladyslav.panchohaapp.dummy.DummyContent.DummyItem;
+import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
 
 import java.util.List;
 
@@ -18,10 +19,10 @@ import java.util.List;
  */
 public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMenCategoryRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<CategoryItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyMenCategoryRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyMenCategoryRecyclerViewAdapter(List<CategoryItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -37,7 +38,7 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mContentView.setText(mValues.get(position).name);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +61,7 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public CategoryItem mItem;
 
         public ViewHolder(View view) {
             super(view);

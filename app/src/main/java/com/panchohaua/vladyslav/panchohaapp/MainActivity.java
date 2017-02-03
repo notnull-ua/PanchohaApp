@@ -17,7 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.panchohaua.vladyslav.panchohaapp.dummy.DummyContent;
+import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,MenCategoryFragment.OnListFragmentInteractionListener {
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(CategoryItem item) {
 
     }
 

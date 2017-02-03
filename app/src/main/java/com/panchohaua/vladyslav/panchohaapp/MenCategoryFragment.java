@@ -6,14 +6,22 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.panchohaua.vladyslav.panchohaapp.dummy.DummyContent;
-import com.panchohaua.vladyslav.panchohaapp.dummy.DummyContent.DummyItem;
+import com.panchohaua.vladyslav.panchohaapp.api.MenCategoriesApi;
+import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A fragment representing a list of Items.
@@ -28,6 +36,8 @@ public class MenCategoryFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    final List<CategoryItem> categoryItems = new ArrayList<>();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -63,13 +73,35 @@ public class MenCategoryFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            final RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyMenCategoryRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+            recyclerView.setAdapter(new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener));
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://admin.panchoha-ua.com")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            MenCategoriesApi menCategoriesApi = retrofit.create(MenCategoriesApi.class);
+            menCategoriesApi.getData("1").enqueue(new Callback<List<CategoryItem>>() {
+                @Override
+                public void onResponse(Call<List<CategoryItem>> call, Response<List<CategoryItem>> response) {
+                    categoryItems.addAll(response.body());
+                    recyclerView.getAdapter().notifyDataSetChanged();
+                }
+
+                @Override
+                public void onFailure(Call<List<CategoryItem>> call, Throwable t) {
+
+                }
+            });
+
+
         }
         return view;
     }
@@ -104,6 +136,6 @@ public class MenCategoryFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(CategoryItem item);
     }
 }
