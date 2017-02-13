@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CategoryItem {
-
+    // тут питань нема окрім Useless геттерів і сеттерів. Не юзаєш - видали.
     public String id;
     public String name;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
