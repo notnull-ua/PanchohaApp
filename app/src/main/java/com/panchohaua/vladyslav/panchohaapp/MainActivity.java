@@ -52,12 +52,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        menCategoryFragment = new MenCategoryFragment();
-        fTrans = getSupportFragmentManager().beginTransaction();
-        fTrans.add(R.id.fLayout,menCategoryFragment);
-        fTrans.commit();
-
-
     }
 
     @Override
