@@ -14,7 +14,7 @@ import retrofit2.http.Query;
 
 public interface MenCategoriesApi {
 
-    @GET("/v1/categories")
+    @GET("/v1/categories/for-men")
     Call<List<CategoryItem>> getData(@Query("key") String key);
 
 }

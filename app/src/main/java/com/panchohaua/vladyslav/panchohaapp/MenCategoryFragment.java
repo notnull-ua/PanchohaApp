@@ -38,6 +38,8 @@ public class MenCategoryFragment extends Fragment {
 
     final List<CategoryItem> categoryItems = new ArrayList<>();
 
+    private MyMenCategoryRecyclerViewAdapter myMenCategoryRecyclerViewAdapter ;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -79,8 +81,9 @@ public class MenCategoryFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            // адаптер краще створити окремим полем. Так як в тебе можуть бути свої кастомні методи, щоб була модливість їх викликати.
-            recyclerView.setAdapter(new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener));
+            // типу так?
+            myMenCategoryRecyclerViewAdapter = new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener);
+            recyclerView.setAdapter(myMenCategoryRecyclerViewAdapter);
             // Ці речі робляться в окремих класах... Фрагмент по факту являється вью контроллером. Тут повинні тільи бути речі пов'язані з вью
             // Щоб уникнути такої ситуації треба створити клас Модель (MenCategoryModel), в якому буде запит на отримання даних. по факту у модель можна передати калбек
             // типу в моделі щоб був метод public void getCategoriesApi(Callback<List<CategoryItem>> someCallback){  menCategoriesApi.getData("1").enqueue(someCallback);}

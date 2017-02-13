@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +20,7 @@ import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,MenCategoryFragment.OnListFragmentInteractionListener {
 
-    MenCategoryFragment menCategoryFragment; // завжди додавай модифікатори доступу public private protected.
+    private MenCategoryFragment menCategoryFragment; // завжди додавай модифікатори доступу public private protected.
     // видали весь лишній код який ти не використовуєш.
 
     @Override
@@ -71,10 +72,13 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
+        //клік на херер барі на кнопку опцій
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Log.i("LOG","Click on the setting");
             return true;
         }
 
@@ -93,6 +97,7 @@ public class MainActivity extends AppCompatActivity
            getSupportFragmentManager().beginTransaction()
             .replace(R.id.fLayout,menCategoryFragment)
             .commit();
+
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
             Toast toast = Toast.makeText(this,"This is gallery!",Toast.LENGTH_SHORT);
@@ -116,7 +121,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(CategoryItem item) {
-        // зручніш додати сюди хоча б тоаст щоб бачити що з того фрагменту щось приходить.
+        Toast toast = Toast.makeText(this, "Fragment returned item with ID: "+item.id+" and NAME:"+item.name,Toast.LENGTH_SHORT);
+        toast.show();
     }
 
 }
