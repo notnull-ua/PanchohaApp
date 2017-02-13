@@ -49,7 +49,8 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
     public int getItemCount() {
         return mValues.size();
     }
-
+    // в Даному випадку модифікатори доступу  можуть бути відсутні(якщо відстуні значить доступ є лише у класів які знаходяться в цій самій папці,
+    // типу відсутній модифікатор називається Local) так як внутрішній клас і юзається лише тут.
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;

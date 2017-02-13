@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +69,7 @@ public class MenCategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mencategory_list, container, false);
 
+        //незрозумілий мені трюк з фрегментом у якому є лише RecyclerView. Але в даному випадку проканає.
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -79,10 +79,14 @@ public class MenCategoryFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-
+            // адаптер краще створити окремим полем. Так як в тебе можуть бути свої кастомні методи, щоб була модливість їх викликати.
             recyclerView.setAdapter(new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener));
-
-
+            // Ці речі робляться в окремих класах... Фрагмент по факту являється вью контроллером. Тут повинні тільи бути речі пов'язані з вью
+            // Щоб уникнути такої ситуації треба створити клас Модель (MenCategoryModel), в якому буде запит на отримання даних. по факту у модель можна передати калбек
+            // типу в моделі щоб був метод public void getCategoriesApi(Callback<List<CategoryItem>> someCallback){  menCategoriesApi.getData("1").enqueue(someCallback);}
+            // Щоб не сворювати ретрофітовські калбеки в цьому класі створи проміжний клас типу презентера. Який буже спілкуватись з моделями і буде лінк на Вью. Ініцілізуєш
+            // презентер у методі онКріейт в фрагменті і передаєш туди this що = ссилка на твій фрагмент. А потім якщо хочеш змінити щось в фрагменті то викликай публічні методи цього фрагменту.
+            // так як лінк на фрегмент в тебе є ти можеш це робити без проблем.
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://admin.panchoha-ua.com")
                     .addConverterFactory(GsonConverterFactory.create())
