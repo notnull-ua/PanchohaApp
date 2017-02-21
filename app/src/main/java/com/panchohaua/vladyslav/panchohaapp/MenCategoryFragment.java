@@ -10,17 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.panchohaua.vladyslav.panchohaapp.api.MenCategoriesApi;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A fragment representing a list of Items.
@@ -38,7 +32,11 @@ public class MenCategoryFragment extends Fragment {
 
     final List<CategoryItem> categoryItems = new ArrayList<>();
 
-    private MyMenCategoryRecyclerViewAdapter myMenCategoryRecyclerViewAdapter ;
+    private MyMenCategoryRecyclerViewAdapter myMenCategoryRecyclerViewAdapter;
+
+    private RecyclerView recyclerView;
+
+    private MenCategoryPresenter menCategoryPresenter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -64,6 +62,8 @@ public class MenCategoryFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+
+        this.menCategoryPresenter = new MenCategoryPresenter(this);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class MenCategoryFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            final RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -84,30 +84,6 @@ public class MenCategoryFragment extends Fragment {
             // типу так?
             myMenCategoryRecyclerViewAdapter = new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener);
             recyclerView.setAdapter(myMenCategoryRecyclerViewAdapter);
-            // Ці речі робляться в окремих класах... Фрагмент по факту являється вью контроллером. Тут повинні тільи бути речі пов'язані з вью
-            // Щоб уникнути такої ситуації треба створити клас Модель (MenCategoryModel), в якому буде запит на отримання даних. по факту у модель можна передати калбек
-            // типу в моделі щоб був метод public void getCategoriesApi(Callback<List<CategoryItem>> someCallback){  menCategoriesApi.getData("1").enqueue(someCallback);}
-            // Щоб не сворювати ретрофітовські калбеки в цьому класі створи проміжний клас типу презентера. Який буже спілкуватись з моделями і буде лінк на Вью. Ініцілізуєш
-            // презентер у методі онКріейт в фрагменті і передаєш туди this що = ссилка на твій фрагмент. А потім якщо хочеш змінити щось в фрагменті то викликай публічні методи цього фрагменту.
-            // так як лінк на фрегмент в тебе є ти можеш це робити без проблем.
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://admin.panchoha-ua.com")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            MenCategoriesApi menCategoriesApi = retrofit.create(MenCategoriesApi.class);
-            menCategoriesApi.getData("1").enqueue(new Callback<List<CategoryItem>>() {
-                @Override
-                public void onResponse(Call<List<CategoryItem>> call, Response<List<CategoryItem>> response) {
-                    categoryItems.addAll(response.body());
-                    recyclerView.getAdapter().notifyDataSetChanged();
-                }
-
-                @Override
-                public void onFailure(Call<List<CategoryItem>> call, Throwable t) {
-
-                }
-            });
-
 
         }
         return view;
@@ -144,5 +120,10 @@ public class MenCategoryFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(CategoryItem item);
+    }
+
+    public void updateList(Collection collection) {
+        categoryItems.addAll(collection);
+        recyclerView.getAdapter().notifyDataSetChanged();
     }
 }
