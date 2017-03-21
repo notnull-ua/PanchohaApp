@@ -30,7 +30,6 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).name);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -53,14 +52,12 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
     // типу відсутній модифікатор називається Local) так як внутрішній клас і юзається лише тут.
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
         public final TextView mContentView;
         public CategoryItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 

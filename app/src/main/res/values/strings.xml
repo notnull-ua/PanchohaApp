@@ -10,6 +10,8 @@
     <string name='action_menu_men'>Для чоловіків</string>
     <string name='action_menu_women'>Для жінок</string>
     <string name='action_menu_child'>Для дітей</string>
+    <string name='action_menu_girl'>Для дівчаток</string>
+    <string name='action_menu_boy'>Для хлопчиків</string>
     <string name="title_activity_men_category">MenCategoryActivity</string>
 
 </resources>

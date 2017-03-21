@@ -25,7 +25,7 @@ public class MenCategoryPresenter {
         menCategoryModel.getCategoriesApi(new Callback<List<CategoryItem>>() {
             @Override
             public void onResponse(Call<List<CategoryItem>> call, Response<List<CategoryItem>> response) {
-                menCategoryFragment.updateList(response.body());
+                menCategoryFragment.addList(response.body());
             }
 
             @Override
