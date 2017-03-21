@@ -18,7 +18,8 @@ import android.widget.Toast;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,MenCategoryFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MenCategoryFragment.OnListFragmentInteractionListener,
+        WomenCategoryFragment.OnListFragmentInteractionListener {
 
     private MenCategoryFragment menCategoryFragment; // завжди додавай модифікатори доступу public private protected.
     // видали весь лишній код який ти не використовуєш.
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle); // замість setDrawerListener addDrawerListener. Слідкуй за тим що є депрекейтед.
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Log.i("LOG","Click on the setting");
+            Log.i("LOG", "Click on the setting");
             return true;
         }
 
@@ -94,13 +95,17 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_men) {
             menCategoryFragment = new MenCategoryFragment();
             //так як юзаєш фрагмент менеджер в одному місці той об'єкт є useless.
-           getSupportFragmentManager().beginTransaction()
-            .replace(R.id.fLayout,menCategoryFragment)
-            .commit();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fLayout, menCategoryFragment)
+                    .commit();
 
-            // Handle the camera action
+
         } else if (id == R.id.nav_women) {
-            Toast toast = Toast.makeText(this,"This is gallery!",Toast.LENGTH_SHORT);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fLayout, new WomenCategoryFragment())
+                    .commit();
+
+            Toast toast = Toast.makeText(this, "This is gallery!", Toast.LENGTH_SHORT);
             toast.show();
 
 
@@ -113,7 +118,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(CategoryItem item) {
-        Toast toast = Toast.makeText(this, "Fragment returned item with ID: "+item.id+" and NAME:"+item.name,Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this, "Fragment returned item with ID: " + item.id + " and NAME:" + item.name, Toast.LENGTH_SHORT);
         toast.show();
     }
 
