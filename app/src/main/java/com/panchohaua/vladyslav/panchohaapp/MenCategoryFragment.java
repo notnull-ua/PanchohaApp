@@ -122,7 +122,7 @@ public class MenCategoryFragment extends Fragment {
         void onListFragmentInteraction(CategoryItem item);
     }
 
-    public void updateList(Collection collection) {
+    public void addList(Collection collection) {
         categoryItems.addAll(collection);
         recyclerView.getAdapter().notifyDataSetChanged();
     }
