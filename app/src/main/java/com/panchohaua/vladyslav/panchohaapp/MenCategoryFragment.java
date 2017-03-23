@@ -63,7 +63,7 @@ public class MenCategoryFragment extends Fragment {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
 
-        this.menCategoryPresenter = new MenCategoryPresenter(this);
+        menCategoryPresenter = new MenCategoryPresenter(this);
     }
 
     @Override
