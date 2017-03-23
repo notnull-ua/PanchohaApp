@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,14 +17,16 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
+import com.panchohaua.vladyslav.panchohaapp.models.products.Product;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MenCategoryFragment.OnListFragmentInteractionListener,
-        WomenCategoryFragment.OnListFragmentInteractionListener {
+        WomenCategoryFragment.OnListFragmentInteractionListener,
+        ProductsFragment.OnListFragmentInteractionListener
 
-    private MenCategoryFragment menCategoryFragment; // завжди додавай модифікатори доступу public private protected.
-    // видали весь лишній код який ти не використовуєш.
+{
 
+    private FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,25 +94,16 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
         if (id == R.id.nav_men) {
-            menCategoryFragment = new MenCategoryFragment();
-            //так як юзаєш фрагмент менеджер в одному місці той об'єкт є useless.
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fLayout, menCategoryFragment)
-                    .commit();
+            fragmentTransaction.replace(R.id.fLayout, new MenCategoryFragment());
 
 
         } else if (id == R.id.nav_women) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fLayout, new WomenCategoryFragment())
-                    .commit();
-
-            Toast toast = Toast.makeText(this, "This is gallery!", Toast.LENGTH_SHORT);
-            toast.show();
-
+            fragmentTransaction.replace(R.id.fLayout, new WomenCategoryFragment());
 
         }
+        fragmentTransaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -119,6 +113,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(CategoryItem item) {
         Toast toast = Toast.makeText(this, "Fragment returned item with ID: " + item.id + " and NAME:" + item.name, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    public void onListFragmentInteraction(Product item) {
+
+        Toast toast = Toast.makeText(this, "Fragment returned item with ID: " + item.getId() + " and NAME:" + item.getName(), Toast.LENGTH_SHORT);
         toast.show();
     }
 
