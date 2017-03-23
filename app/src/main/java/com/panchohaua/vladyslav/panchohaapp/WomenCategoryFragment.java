@@ -25,7 +25,7 @@ import java.util.List;
 public class WomenCategoryFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
-    private int mColumnCount = 1;
+    private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
 
     final List<CategoryItem> categoryItems = new ArrayList<>();
