@@ -65,7 +65,7 @@ public class Product {
     private String otherImg;
     @SerializedName("percent_discount")
     @Expose
-    private Long percentDiscount;
+    private Double percentDiscount;
     @SerializedName("id_style")
     @Expose
     private Long idStyle;
@@ -218,11 +218,11 @@ public class Product {
         this.otherImg = otherImg;
     }
 
-    public Long getPercentDiscount() {
+    public Double getPercentDiscount() {
         return percentDiscount;
     }
 
-    public void setPercentDiscount(Long percentDiscount) {
+    public void setPercentDiscount(Double percentDiscount) {
         this.percentDiscount = percentDiscount;
     }
 

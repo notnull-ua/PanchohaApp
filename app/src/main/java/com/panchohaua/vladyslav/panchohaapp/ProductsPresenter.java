@@ -1,6 +1,8 @@
 package com.panchohaua.vladyslav.panchohaapp;
 
 
+import android.util.Log;
+
 import com.panchohaua.vladyslav.panchohaapp.models.categories.ProductModel;
 
 import com.panchohaua.vladyslav.panchohaapp.models.products.Product;
@@ -33,6 +35,7 @@ public class ProductsPresenter {
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
+                Log.e("PROD", "Error getting products");
 
             }
         });

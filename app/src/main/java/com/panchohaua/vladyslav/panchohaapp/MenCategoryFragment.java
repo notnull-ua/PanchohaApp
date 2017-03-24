@@ -22,13 +22,14 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class MenCategoryFragment extends Fragment {
+public class MenCategoryFragment extends Fragment implements OnCategoryFragmentChangeListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private OnCategoryFragmentChangeListener mCatFragmentListener;
 
     final List<CategoryItem> categoryItems = new ArrayList<>();
 
@@ -79,7 +80,7 @@ public class MenCategoryFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             // типу так?
-            myMenCategoryRecyclerViewAdapter = new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener);
+            myMenCategoryRecyclerViewAdapter = new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener, this);
             recyclerView.setAdapter(myMenCategoryRecyclerViewAdapter);
 
         }
@@ -96,12 +97,18 @@ public class MenCategoryFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
         }
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onCategoryFragmentChange() {
+        (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.fLayout, new ProductsFragment()).commit();
     }
 
     /**
@@ -123,4 +130,5 @@ public class MenCategoryFragment extends Fragment {
         categoryItems.addAll(collection);
         recyclerView.getAdapter().notifyDataSetChanged();
     }
+
 }
