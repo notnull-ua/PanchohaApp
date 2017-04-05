@@ -22,7 +22,7 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class MenCategoryFragment extends Fragment implements OnCategoryFragmentChangeListener {
+public class MenCategoryFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -80,7 +80,7 @@ public class MenCategoryFragment extends Fragment implements OnCategoryFragmentC
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             // типу так?
-            myMenCategoryRecyclerViewAdapter = new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener, this);
+            myMenCategoryRecyclerViewAdapter = new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener);
             recyclerView.setAdapter(myMenCategoryRecyclerViewAdapter);
 
         }
@@ -106,10 +106,6 @@ public class MenCategoryFragment extends Fragment implements OnCategoryFragmentC
         mListener = null;
     }
 
-    @Override
-    public void onCategoryFragmentChange() {
-        (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.fLayout, new ProductsFragment()).commit();
-    }
 
     /**
      * This interface must be implemented by activities that contain this

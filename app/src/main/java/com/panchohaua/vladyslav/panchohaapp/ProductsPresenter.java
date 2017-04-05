@@ -22,6 +22,8 @@ public class ProductsPresenter {
     private final ProductModel productModel;
     private final ProductsFragment productsFragment;
 
+    private final
+
 
     public ProductsPresenter(final ProductsFragment fragment) {
         productModel = new ProductModel();

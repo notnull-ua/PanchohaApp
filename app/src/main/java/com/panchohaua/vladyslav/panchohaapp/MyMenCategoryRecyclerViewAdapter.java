@@ -15,13 +15,11 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
 
     private final List<CategoryItem> mValues;
     private final OnListFragmentInteractionListener mListener;
-    private final OnCategoryFragmentChangeListener fragListener;
 
 
-    public MyMenCategoryRecyclerViewAdapter(List<CategoryItem> items, OnListFragmentInteractionListener listener, OnCategoryFragmentChangeListener fLitener) {
+    public MyMenCategoryRecyclerViewAdapter(List<CategoryItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
-        fragListener = fLitener;
     }
 
     @Override
@@ -45,9 +43,6 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
                     // fragment is attached to one) that an item has been selected.
 
                     mListener.onListFragmentInteraction(holder.mItem);
-                }
-                if (fragListener != null) {
-                    fragListener.onCategoryFragmentChange();
                 }
             }
         });

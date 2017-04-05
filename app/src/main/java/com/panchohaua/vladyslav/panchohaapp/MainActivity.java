@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity
     public void onListFragmentInteraction(CategoryItem item) {
         Toast toast = Toast.makeText(this, "Fragment returned item with ID: " + item.id + " and NAME:" + item.name, Toast.LENGTH_SHORT);
         toast.show();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fLayout, new ProductsFragment()).commit();
     }
 
     @Override
