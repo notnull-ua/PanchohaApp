@@ -22,13 +22,15 @@ public class ProductsPresenter {
     private final ProductModel productModel;
     private final ProductsFragment productsFragment;
 
-    private final
 
 
     public ProductsPresenter(final ProductsFragment fragment) {
         productModel = new ProductModel();
         productsFragment = fragment;
 
+        if (fragment.getArguments().getString("id-category") != null) {
+            productModel.setIdCategory(fragment.getArguments().getString("id-category"));
+        }
         productModel.getCategoriesApi(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {

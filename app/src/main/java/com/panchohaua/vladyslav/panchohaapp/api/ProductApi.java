@@ -17,5 +17,8 @@ public interface ProductApi {
 
     @GET("/v1/products")
     /* KEY is the parameter in GET query, means key = access token   */
-    Call<List<Product>> getData(@Query("key") String key, @Query("category") String category);
+    Call<List<Product>> getData(@Query("key") String key);
+
+    @GET("/v1/products")
+    Call<List<Product>> getData(@Query("key") String key, @Query("category[]") String category);
 }

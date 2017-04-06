@@ -19,6 +19,12 @@ public class ProductModel {
     private Retrofit retrofit;
     private ProductApi productApi;
 
+    public void setIdCategory(String idCategory) {
+        this.idCategory = idCategory;
+    }
+
+    private String idCategory;
+
     public ProductModel() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(APIConfig.baseUrl)
@@ -28,6 +34,7 @@ public class ProductModel {
     }
 
     public void getCategoriesApi(Callback<List<Product>> callback) {
-        productApi.getData(APIConfig.key).enqueue(callback);
+        productApi.getData(APIConfig.key, idCategory).enqueue(callback);
     }
+
 }

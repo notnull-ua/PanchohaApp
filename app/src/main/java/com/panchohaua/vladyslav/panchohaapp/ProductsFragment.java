@@ -24,6 +24,7 @@ import java.util.List;
 public class ProductsFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String ARG_ID_CATEGORY = "id-category";
 
     private int mColumnCount = 2;
     private RecyclerView recyclerView;
@@ -49,14 +50,25 @@ public class ProductsFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressWarnings("unused")
+    public static ProductsFragment newInstance(String idCategory) {
+        ProductsFragment fragment = new ProductsFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_ID_CATEGORY, idCategory);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            if (getArguments().getString(ARG_ID_CATEGORY) != null) {
+                productsPresenter = new ProductsPresenter(this);
+            }
         }
 
-        productsPresenter = new ProductsPresenter(this);
 
     }
 

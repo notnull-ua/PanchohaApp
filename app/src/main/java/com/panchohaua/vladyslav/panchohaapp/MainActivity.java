@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -114,7 +115,10 @@ public class MainActivity extends AppCompatActivity
     public void onListFragmentInteraction(CategoryItem item) {
         Toast toast = Toast.makeText(this, "Fragment returned item with ID: " + item.id + " and NAME:" + item.name, Toast.LENGTH_SHORT);
         toast.show();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fLayout, new ProductsFragment()).commit();
+        ProductsFragment productFragment = ProductsFragment.newInstance(item.id);
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.fLayout, productFragment).commit();
     }
 
     @Override
