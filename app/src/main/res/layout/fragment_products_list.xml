@@ -9,7 +9,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.panchohaua.vladyslav.panchohaapp.ProductsFragment"
+    tools:context="com.panchohaua.vladyslav.panchohaapp.fragments.ProductsFragment"
     tools:listitem="@layout/fragment_product">
 
 </android.support.v7.widget.RecyclerView>

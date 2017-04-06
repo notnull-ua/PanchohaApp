@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.panchohaua.vladyslav.panchohaapp.MenCategoryFragment"
+    tools:context="com.panchohaua.vladyslav.panchohaapp.fragments.MenCategoryFragment"
     tools:listitem="@layout/fragment_mencategory" />

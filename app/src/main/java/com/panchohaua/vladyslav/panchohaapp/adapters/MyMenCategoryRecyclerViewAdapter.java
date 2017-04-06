@@ -1,12 +1,13 @@
-package com.panchohaua.vladyslav.panchohaapp;
+package com.panchohaua.vladyslav.panchohaapp.adapters;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.panchohaua.vladyslav.panchohaapp.MenCategoryFragment.OnListFragmentInteractionListener;
+
+import com.panchohaua.vladyslav.panchohaapp.R;
+import com.panchohaua.vladyslav.panchohaapp.fragments.MenCategoryFragment.OnListFragmentInteractionListener;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
 
 import java.util.List;

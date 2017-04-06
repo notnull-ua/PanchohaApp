@@ -1,4 +1,4 @@
-package com.panchohaua.vladyslav.panchohaapp;
+package com.panchohaua.vladyslav.panchohaapp.fragments;
 
 import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.WomenCategoryModel;

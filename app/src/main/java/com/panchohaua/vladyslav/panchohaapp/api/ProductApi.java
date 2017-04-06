@@ -21,4 +21,7 @@ public interface ProductApi {
 
     @GET("/v1/products")
     Call<List<Product>> getData(@Query("key") String key, @Query("category[]") String category);
+
+    @GET("/v1/products/{id}")
+    Call<List<Product>> getItem(@Query("key") String key, @Query("id") String id);
 }

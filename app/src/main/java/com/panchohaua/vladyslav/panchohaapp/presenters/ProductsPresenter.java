@@ -1,8 +1,9 @@
-package com.panchohaua.vladyslav.panchohaapp;
+package com.panchohaua.vladyslav.panchohaapp.presenters;
 
 
 import android.util.Log;
 
+import com.panchohaua.vladyslav.panchohaapp.fragments.ProductsFragment;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.ProductModel;
 
 import com.panchohaua.vladyslav.panchohaapp.models.products.Product;

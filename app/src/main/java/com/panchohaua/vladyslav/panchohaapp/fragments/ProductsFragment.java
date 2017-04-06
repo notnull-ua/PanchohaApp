@@ -1,4 +1,4 @@
-package com.panchohaua.vladyslav.panchohaapp;
+package com.panchohaua.vladyslav.panchohaapp.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.panchohaua.vladyslav.panchohaapp.presenters.ProductsPresenter;
+import com.panchohaua.vladyslav.panchohaapp.adapters.ProductsRecyclerViewAdapter;
+import com.panchohaua.vladyslav.panchohaapp.R;
 import com.panchohaua.vladyslav.panchohaapp.models.products.Product;
 
 import java.util.ArrayList;

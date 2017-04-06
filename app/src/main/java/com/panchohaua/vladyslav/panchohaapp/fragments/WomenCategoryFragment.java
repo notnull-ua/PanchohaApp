@@ -1,4 +1,4 @@
-package com.panchohaua.vladyslav.panchohaapp;
+package com.panchohaua.vladyslav.panchohaapp.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.panchohaua.vladyslav.panchohaapp.adapters.MyWomenCategoryRecyclerViewAdapter;
+import com.panchohaua.vladyslav.panchohaapp.R;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
 
 import java.util.ArrayList;
@@ -22,34 +24,30 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class MenCategoryFragment extends Fragment {
+public class WomenCategoryFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
+    private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
-    private OnCategoryFragmentChangeListener mCatFragmentListener;
 
     final List<CategoryItem> categoryItems = new ArrayList<>();
 
-    private MyMenCategoryRecyclerViewAdapter myMenCategoryRecyclerViewAdapter;
+    private MyWomenCategoryRecyclerViewAdapter myWomenCategoryRecyclerViewAdapter;
 
     private RecyclerView recyclerView;
 
-    private MenCategoryPresenter menCategoryPresenter;
+    private WomenCategoryPresenter womenCategoryPresenter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public MenCategoryFragment() {
+    public WomenCategoryFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static MenCategoryFragment newInstance(int columnCount) {
-        MenCategoryFragment fragment = new MenCategoryFragment();
+    public static WomenCategoryFragment newInstance(int columnCount) {
+        WomenCategoryFragment fragment = new WomenCategoryFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -60,8 +58,11 @@ public class MenCategoryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getArguments() != null) {
+            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+        }
 
-        menCategoryPresenter = new MenCategoryPresenter(this);
+        this.womenCategoryPresenter = new WomenCategoryPresenter(this);
     }
 
     @Override
@@ -69,7 +70,6 @@ public class MenCategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mencategory_list, container, false);
 
-        //незрозумілий мені трюк з фрегментом у якому є лише RecyclerView. Але в даному випадку проканає.
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -79,9 +79,8 @@ public class MenCategoryFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            // типу так?
-            myMenCategoryRecyclerViewAdapter = new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener);
-            recyclerView.setAdapter(myMenCategoryRecyclerViewAdapter);
+            myWomenCategoryRecyclerViewAdapter = new MyWomenCategoryRecyclerViewAdapter(categoryItems, mListener);
+            recyclerView.setAdapter(myWomenCategoryRecyclerViewAdapter);
 
         }
         return view;
@@ -97,7 +96,6 @@ public class MenCategoryFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
         }
-
     }
 
     @Override
@@ -105,7 +103,6 @@ public class MenCategoryFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
 
     /**
      * This interface must be implemented by activities that contain this
@@ -126,5 +123,4 @@ public class MenCategoryFragment extends Fragment {
         categoryItems.addAll(collection);
         recyclerView.getAdapter().notifyDataSetChanged();
     }
-
 }

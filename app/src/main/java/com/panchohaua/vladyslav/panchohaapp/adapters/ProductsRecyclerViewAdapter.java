@@ -1,4 +1,4 @@
-package com.panchohaua.vladyslav.panchohaapp;
+package com.panchohaua.vladyslav.panchohaapp.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,17 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.panchohaua.vladyslav.panchohaapp.WomenCategoryFragment.OnListFragmentInteractionListener;
-import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
+import com.panchohaua.vladyslav.panchohaapp.R;
+import com.panchohaua.vladyslav.panchohaapp.fragments.ProductsFragment;
+import com.panchohaua.vladyslav.panchohaapp.fragments.ProductsFragment.OnListFragmentInteractionListener;
+import com.panchohaua.vladyslav.panchohaapp.models.products.Product;
 
 import java.util.List;
 
-public class MyWomenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyWomenCategoryRecyclerViewAdapter.ViewHolder> {
+public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsRecyclerViewAdapter.ViewHolder> {
 
-    private final List<CategoryItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final List<Product> mValues;
+    private final ProductsFragment.OnListFragmentInteractionListener mListener;
 
-    public MyWomenCategoryRecyclerViewAdapter(List<CategoryItem> items, OnListFragmentInteractionListener listener) {
+    public ProductsRecyclerViewAdapter(List<Product> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -24,14 +26,15 @@ public class MyWomenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyW
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_mencategory, parent, false);
+                .inflate(R.layout.fragment_product, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mContentView.setText(mValues.get(position).name);
+        holder.mContentView.setText(mValues.get(position).getName());
+        holder.mIdView.setText(mValues.get(position).getId());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,12 +56,14 @@ public class MyWomenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyW
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mContentView;
-        public CategoryItem mItem;
+        public final TextView mIdView;
+        public Product mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = (TextView) view.findViewById(R.id.id);
         }
 
         @Override
