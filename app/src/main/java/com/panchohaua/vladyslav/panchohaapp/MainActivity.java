@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity
     public void onListFragmentInteraction(CategoryItem item) {
         Toast toast = Toast.makeText(this, "Fragment returned item with ID: " + item.id + " and NAME:" + item.name, Toast.LENGTH_SHORT);
         toast.show();
-        ProductsFragment productFragment = ProductsFragment.newInstance(item.id);
+        ProductsFragment productFragment = ProductsFragment.newInstance(item.id); // // TODO: 07.04.2017 Якось визначати стать та передавати в фрагмент 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fLayout, productFragment).commit();

@@ -4,7 +4,7 @@ package com.panchohaua.vladyslav.panchohaapp.presenters;
 import android.util.Log;
 
 import com.panchohaua.vladyslav.panchohaapp.fragments.ProductsFragment;
-import com.panchohaua.vladyslav.panchohaapp.models.categories.ProductModel;
+import com.panchohaua.vladyslav.panchohaapp.models.products.ProductModel;
 
 import com.panchohaua.vladyslav.panchohaapp.models.products.Product;
 
@@ -24,14 +24,9 @@ public class ProductsPresenter {
     private final ProductsFragment productsFragment;
 
 
-
-    public ProductsPresenter(final ProductsFragment fragment) {
-        productModel = new ProductModel();
+    public ProductsPresenter(final ProductsFragment fragment, String idCategory, String sex) {
+        productModel = new ProductModel(idCategory, sex);
         productsFragment = fragment;
-
-        if (fragment.getArguments().getString("id-category") != null) {
-            productModel.setIdCategory(fragment.getArguments().getString("id-category"));
-        }
     }
 
     public void getProducts() {
