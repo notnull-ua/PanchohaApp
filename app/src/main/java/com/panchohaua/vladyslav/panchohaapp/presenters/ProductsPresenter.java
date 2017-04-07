@@ -32,6 +32,9 @@ public class ProductsPresenter {
         if (fragment.getArguments().getString("id-category") != null) {
             productModel.setIdCategory(fragment.getArguments().getString("id-category"));
         }
+    }
+
+    public void getProducts() {
         productModel.getCategoriesApi(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {

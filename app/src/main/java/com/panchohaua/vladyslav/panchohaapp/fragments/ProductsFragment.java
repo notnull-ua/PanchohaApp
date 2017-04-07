@@ -94,6 +94,7 @@ public class ProductsFragment extends Fragment {
             recyclerView.setAdapter(productsRecyclerViewAdapter);
 
         }
+        productsPresenter.getProducts();
         return view;
     }
 

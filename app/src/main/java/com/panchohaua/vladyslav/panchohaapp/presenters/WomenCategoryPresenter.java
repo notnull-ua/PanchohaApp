@@ -1,5 +1,6 @@
-package com.panchohaua.vladyslav.panchohaapp.fragments;
+package com.panchohaua.vladyslav.panchohaapp.presenters;
 
+import com.panchohaua.vladyslav.panchohaapp.fragments.WomenCategoryFragment;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.WomenCategoryModel;
 
@@ -19,6 +20,9 @@ public class WomenCategoryPresenter {
         womenCategoryModel = new WomenCategoryModel();
         womenCategoryFragment = fragment;
 
+    }
+
+    public void getCategories() {
         womenCategoryModel.getCategoriesApi(new Callback<List<CategoryItem>>() {
             @Override
             public void onResponse(Call<List<CategoryItem>> call, Response<List<CategoryItem>> response) {

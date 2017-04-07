@@ -2,10 +2,12 @@ package com.panchohaua.vladyslav.panchohaapp.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,9 +63,14 @@ public class MenCategoryFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        menCategoryPresenter.getCategories();
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         menCategoryPresenter = new MenCategoryPresenter(this);
     }
@@ -88,7 +95,10 @@ public class MenCategoryFragment extends Fragment {
             recyclerView.setAdapter(myMenCategoryRecyclerViewAdapter);
 
         }
+
+
         return view;
+
     }
 
 
@@ -128,7 +138,7 @@ public class MenCategoryFragment extends Fragment {
 
     public void addList(Collection collection) {
         categoryItems.addAll(collection);
-        recyclerView.getAdapter().notifyDataSetChanged();
+        myMenCategoryRecyclerViewAdapter.notifyDataSetChanged();
     }
 
 }

@@ -2,6 +2,7 @@ package com.panchohaua.vladyslav.panchohaapp.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import com.panchohaua.vladyslav.panchohaapp.adapters.MyWomenCategoryRecyclerViewAdapter;
 import com.panchohaua.vladyslav.panchohaapp.R;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
+import com.panchohaua.vladyslav.panchohaapp.presenters.WomenCategoryPresenter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -86,6 +88,11 @@ public class WomenCategoryFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        womenCategoryPresenter.getCategories();
+    }
 
     @Override
     public void onAttach(Context context) {
