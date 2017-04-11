@@ -16,6 +16,7 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
 
     private final List<CategoryItem> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private final String SEX = "men";
 
 
     public MyMenCategoryRecyclerViewAdapter(List<CategoryItem> items, OnListFragmentInteractionListener listener) {
@@ -43,7 +44,7 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
 
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.mItem, SEX);
                 }
             }
         });
@@ -53,6 +54,7 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
     public int getItemCount() {
         return mValues.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mContentView;

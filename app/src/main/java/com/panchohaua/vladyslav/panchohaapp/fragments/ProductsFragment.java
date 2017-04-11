@@ -78,7 +78,7 @@ public class ProductsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-            if (getArguments().getString(ARG_ID_CATEGORY) != null) {
+            if (getArguments().getString(ARG_ID_CATEGORY) != null && getArguments().containsKey(ARG_SEX)) {
                 String sex = getArguments().getString("sex", "");
                 String idCategory = getArguments().getString(ARG_ID_CATEGORY, "");
                 productsPresenter = new ProductsPresenter(this, idCategory, sex);

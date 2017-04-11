@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity
 {
 
     private FragmentTransaction fragmentTransaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,10 +115,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(CategoryItem item) {
+    public void onListFragmentInteraction(CategoryItem item, String sex) {
         Toast toast = Toast.makeText(this, "Fragment returned item with ID: " + item.id + " and NAME:" + item.name, Toast.LENGTH_SHORT);
         toast.show();
-        ProductsFragment productFragment = ProductsFragment.newInstance(item.id); // // TODO: 07.04.2017 Якось визначати стать та передавати в фрагмент 
+        ProductsFragment productFragment = ProductsFragment.newInstance(item.id, sex); // TODO: 07.04.2017 Якось визначати стать та передавати в фрагмент
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fLayout, productFragment).commit();

@@ -16,6 +16,7 @@ public class MyWomenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyW
 
     private final List<CategoryItem> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private final String SEX = "women";
 
     public MyWomenCategoryRecyclerViewAdapter(List<CategoryItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
@@ -40,7 +41,8 @@ public class MyWomenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyW
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.mItem, SEX);
+                    //// TODO: 11.04.2017 передавати тип як на сайті 
                 }
             }
         });

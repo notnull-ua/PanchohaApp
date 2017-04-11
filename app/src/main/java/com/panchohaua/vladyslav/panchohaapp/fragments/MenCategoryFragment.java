@@ -133,7 +133,7 @@ public class MenCategoryFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(CategoryItem item);
+        void onListFragmentInteraction(CategoryItem item, String sex);
     }
 
     public void addList(Collection collection) {
