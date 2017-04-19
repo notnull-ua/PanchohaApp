@@ -18,4 +18,8 @@ public interface MenCategoriesApi {
     /* KEY is the parameter in GET query, means key = access token   */
     Call<List<CategoryItem>> getData(@Query("key") String key);
 
+    @GET("/v1/categories/for-men")
+    /* KEY is the parameter in GET query, means key = access token   */
+    Call<List<CategoryItem>> getData(@Query("key") String key, @Query("page") int page);
+
 }

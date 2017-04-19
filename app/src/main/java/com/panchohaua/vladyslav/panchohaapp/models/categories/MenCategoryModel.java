@@ -28,6 +28,10 @@ public class MenCategoryModel {
     public void getCategoriesApi(Callback<List<CategoryItem>> callback) {
         menCategoriesApi.getData(APIConfig.key).enqueue(callback);
     }
+
+    public void getCategoriesApi(Callback<List<CategoryItem>> callback, int page) {
+        menCategoriesApi.getData(APIConfig.key, page).enqueue(callback);
+    }
 }
 
 

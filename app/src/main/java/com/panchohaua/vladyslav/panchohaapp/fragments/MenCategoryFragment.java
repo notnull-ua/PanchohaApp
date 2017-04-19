@@ -30,9 +30,7 @@ import java.util.List;
  */
 public class MenCategoryFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private OnCategoryFragmentChangeListener mCatFragmentListener;
@@ -52,7 +50,6 @@ public class MenCategoryFragment extends Fragment {
     public MenCategoryFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static MenCategoryFragment newInstance(int columnCount) {
         MenCategoryFragment fragment = new MenCategoryFragment();
@@ -80,7 +77,6 @@ public class MenCategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mencategory_list, container, false);
 
-        //незрозумілий мені трюк з фрегментом у якому є лише RecyclerView. Але в даному випадку проканає.
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -90,9 +86,12 @@ public class MenCategoryFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            // типу так?
             myMenCategoryRecyclerViewAdapter = new MyMenCategoryRecyclerViewAdapter(categoryItems, mListener);
             recyclerView.setAdapter(myMenCategoryRecyclerViewAdapter);
+
+
+            //pagination
+            recyclerView.addOnScrollListener(recycleViewOnScrollListener);
 
         }
 
@@ -121,18 +120,7 @@ public class MenCategoryFragment extends Fragment {
     }
 
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(CategoryItem item, String sex);
     }
 
@@ -140,5 +128,21 @@ public class MenCategoryFragment extends Fragment {
         categoryItems.addAll(collection);
         myMenCategoryRecyclerViewAdapter.notifyDataSetChanged();
     }
+
+    private RecyclerView.OnScrollListener recycleViewOnScrollListener = new RecyclerView.OnScrollListener() {
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            menCategoryPresenter.getCategories();
+
+
+        }
+    };
 
 }
