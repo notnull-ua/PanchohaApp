@@ -20,7 +20,7 @@ import com.panchohaua.vladyslav.panchohaapp.fragments.MenCategoryFragment;
 import com.panchohaua.vladyslav.panchohaapp.fragments.ProductsFragment;
 import com.panchohaua.vladyslav.panchohaapp.fragments.WomenCategoryFragment;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
-import com.panchohaua.vladyslav.panchohaapp.models.products.Product;
+import com.panchohaua.vladyslav.panchohaapp.models.products.ProductItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MenCategoryFragment.OnListFragmentInteractionListener,
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(Product item) {
+    public void onListFragmentInteraction(ProductItem item) {
 
         Toast toast = Toast.makeText(this, "Fragment returned item with ID: " + item.getId() + " and NAME:" + item.getName(), Toast.LENGTH_SHORT);
         toast.show();

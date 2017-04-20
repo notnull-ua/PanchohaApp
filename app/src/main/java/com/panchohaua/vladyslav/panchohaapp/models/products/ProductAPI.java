@@ -13,14 +13,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Vladyslav on 23.03.2017.
  */
 
-public class ProductModel {
+public class ProductAPI {
 
     private Retrofit retrofit;
     private ProductApi productApi;
     private String idCategory;
     private String sex;
 
-    public ProductModel(String idCategory, String sex) {
+    public ProductAPI(String idCategory, String sex) {
         this.idCategory = idCategory;
         this.sex = sex;
         retrofit = new Retrofit.Builder()
@@ -31,7 +31,7 @@ public class ProductModel {
 
     }
 
-    public ProductModel() {
+    public ProductAPI() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(APIConfig.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -39,7 +39,7 @@ public class ProductModel {
         productApi = retrofit.create(ProductApi.class);
     }
 
-    public void getCategoriesApi(Callback<List<Product>> callback) {
+    public void getCategoriesApi(Callback<List<ProductItem>> callback) {
         if (idCategory != null && sex != null) {
             productApi.getData(APIConfig.key, idCategory, sex).enqueue(callback);
         } else if (idCategory != null) {

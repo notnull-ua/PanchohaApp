@@ -1,7 +1,7 @@
 package com.panchohaua.vladyslav.panchohaapp.api;
 
 
-import com.panchohaua.vladyslav.panchohaapp.models.products.Product;
+import com.panchohaua.vladyslav.panchohaapp.models.products.ProductItem;
 
 import java.util.List;
 
@@ -17,15 +17,15 @@ public interface ProductApi {
 
     @GET("/v1/products")
     /* KEY is the parameter in GET query, means key = access token   */
-    Call<List<Product>> getData(@Query("key") String key);
+    Call<List<ProductItem>> getData(@Query("key") String key);
 
     @GET("/v1/products")
-    Call<List<Product>> getData(@Query("key") String key, @Query("category") String category);
+    Call<List<ProductItem>> getData(@Query("key") String key, @Query("category") String category);
 
     @GET("/v1/products/{type}")
-    Call<List<Product>> getData(@Query("key") String key, @Query("category") String category, @Query("type") String type);
+    Call<List<ProductItem>> getData(@Query("key") String key, @Query("category") String category, @Query("type") String type);
 
     @GET("/v1/products/{id}")
-    Call<List<Product>> getItem(@Query("key") String key, @Query("id") String id);
+    Call<List<ProductItem>> getItem(@Query("key") String key, @Query("id") String id);
 
 }

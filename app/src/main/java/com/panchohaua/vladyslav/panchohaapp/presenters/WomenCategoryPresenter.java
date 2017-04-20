@@ -2,7 +2,7 @@ package com.panchohaua.vladyslav.panchohaapp.presenters;
 
 import com.panchohaua.vladyslav.panchohaapp.fragments.WomenCategoryFragment;
 import com.panchohaua.vladyslav.panchohaapp.models.categories.CategoryItem;
-import com.panchohaua.vladyslav.panchohaapp.models.categories.WomenCategoryModel;
+import com.panchohaua.vladyslav.panchohaapp.models.categories.WomenCategoryAPI;
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ import retrofit2.Response;
 
 public class WomenCategoryPresenter {
 
-    private final WomenCategoryModel womenCategoryModel;
+    private final WomenCategoryAPI womenCategoryModel;
     private final WomenCategoryFragment womenCategoryFragment;
 
     public WomenCategoryPresenter(final WomenCategoryFragment fragment) {
-        womenCategoryModel = new WomenCategoryModel();
+        womenCategoryModel = new WomenCategoryAPI();
         womenCategoryFragment = fragment;
 
     }

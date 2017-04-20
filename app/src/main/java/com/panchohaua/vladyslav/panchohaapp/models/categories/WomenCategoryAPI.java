@@ -13,12 +13,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Vladyslav on 21.03.2017.
  */
 
-public class WomenCategoryModel {
+public class WomenCategoryAPI {
 
     private Retrofit retrofit;
     private WomenCategoriesApi womenCategoriesApi;
 
-    public WomenCategoryModel() {
+    public WomenCategoryAPI() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(APIConfig.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())

@@ -13,11 +13,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Vladyslav on 20.02.2017.
  */
 
-public class MenCategoryModel {
+public class MenCategoryAPI {
     private Retrofit retrofit;
     private MenCategoriesApi menCategoriesApi;
 
-    public MenCategoryModel() {
+    public MenCategoryAPI() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(APIConfig.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -25,11 +25,11 @@ public class MenCategoryModel {
         menCategoriesApi = retrofit.create(MenCategoriesApi.class);
     }
 
-    public void getCategoriesApi(Callback<List<CategoryItem>> callback) {
+    public void getCategoriesApi(Callback<CategoriesModel> callback) {
         menCategoriesApi.getData(APIConfig.key).enqueue(callback);
     }
 
-    public void getCategoriesApi(Callback<List<CategoryItem>> callback, int page) {
+    public void getCategoriesApi(Callback<CategoriesModel> callback, int page) {
         menCategoriesApi.getData(APIConfig.key, page).enqueue(callback);
     }
 }

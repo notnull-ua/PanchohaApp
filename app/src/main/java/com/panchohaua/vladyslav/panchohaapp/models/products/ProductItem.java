@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 
-public class Product {
+public class ProductItem {
 
     @SerializedName("id")
     @Expose

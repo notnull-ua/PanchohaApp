@@ -9,16 +9,16 @@ import android.widget.TextView;
 import com.panchohaua.vladyslav.panchohaapp.R;
 import com.panchohaua.vladyslav.panchohaapp.fragments.ProductsFragment;
 import com.panchohaua.vladyslav.panchohaapp.fragments.ProductsFragment.OnListFragmentInteractionListener;
-import com.panchohaua.vladyslav.panchohaapp.models.products.Product;
+import com.panchohaua.vladyslav.panchohaapp.models.products.ProductItem;
 
 import java.util.List;
 
 public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Product> mValues;
+    private final List<ProductItem> mValues;
     private final ProductsFragment.OnListFragmentInteractionListener mListener;
 
-    public ProductsRecyclerViewAdapter(List<Product> items, OnListFragmentInteractionListener listener) {
+    public ProductsRecyclerViewAdapter(List<ProductItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -57,7 +57,7 @@ public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsRe
         public final View mView;
         public final TextView mContentView;
         public final TextView mIdView;
-        public Product mItem;
+        public ProductItem mItem;
 
         public ViewHolder(View view) {
             super(view);

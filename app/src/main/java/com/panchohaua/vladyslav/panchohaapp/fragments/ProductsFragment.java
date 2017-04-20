@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.panchohaua.vladyslav.panchohaapp.presenters.ProductsPresenter;
 import com.panchohaua.vladyslav.panchohaapp.adapters.ProductsRecyclerViewAdapter;
 import com.panchohaua.vladyslav.panchohaapp.R;
-import com.panchohaua.vladyslav.panchohaapp.models.products.Product;
+import com.panchohaua.vladyslav.panchohaapp.models.products.ProductItem;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,7 +32,7 @@ public class ProductsFragment extends Fragment {
 
     private int mColumnCount = 2;
     private RecyclerView recyclerView;
-    final List<Product> products = new ArrayList<>();
+    final List<ProductItem> products = new ArrayList<>();
 
     private ProductsRecyclerViewAdapter productsRecyclerViewAdapter;
 
@@ -130,7 +130,7 @@ public class ProductsFragment extends Fragment {
     }
 
     public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(Product item);
+        void onListFragmentInteraction(ProductItem item);
     }
 
     public void addList(Collection collection) {
