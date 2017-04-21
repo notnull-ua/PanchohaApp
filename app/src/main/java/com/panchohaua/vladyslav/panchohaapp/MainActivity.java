@@ -116,9 +116,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(CategoryItem item, String sex) {
-        Toast toast = Toast.makeText(this, "Fragment returned item with ID: " + item.id + " and NAME:" + item.name, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this, "Fragment returned item with ID: " + item.getId() + " and NAME:" + item.getName(), Toast.LENGTH_SHORT);
         toast.show();
-        ProductsFragment productFragment = ProductsFragment.newInstance(item.id, sex);
+        ProductsFragment productFragment = ProductsFragment.newInstance(item.getId(), sex);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fLayout, productFragment).commit();

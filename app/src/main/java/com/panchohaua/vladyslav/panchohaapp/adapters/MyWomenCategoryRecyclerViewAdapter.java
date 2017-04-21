@@ -33,7 +33,7 @@ public class MyWomenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyW
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mContentView.setText(mValues.get(position).name);
+        holder.mContentView.setText(mValues.get(position).getName());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

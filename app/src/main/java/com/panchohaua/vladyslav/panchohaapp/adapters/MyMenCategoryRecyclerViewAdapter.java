@@ -34,7 +34,7 @@ public class MyMenCategoryRecyclerViewAdapter extends RecyclerView.Adapter<MyMen
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mContentView.setText(mValues.get(position).name);
+        holder.mContentView.setText(mValues.get(position).getName());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
